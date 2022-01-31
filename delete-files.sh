@@ -1,7 +1,17 @@
+#!bin/bash
 #
 #		Script that allows you to delete files and folders through it, kinda useless but was a test anyway
 #
 
+choiceSelection (answer, oriFunc, nxtFunc) {
+	if [ "${answer,,}" == "y" ]; then
+		$nxtFunc;
+	elif [ "${answer,,}" == "n" ]; then
+		$oriFunc;
+	else
+		echo Answer not acceptable, answer with "y" or "n"
+		$oriFunc
+}
 
 user="/home/$(whoami)/"
 folderSelection () {
@@ -21,14 +31,16 @@ testFolderSelection () {
 
 	read -p "y/n: " yesOrNo
 
-	if [ "${yesOrNo,,}" == "y" ]; then
-		folderReading	
-	elif [ "${yesOrNo,,}" == "n" ]; then
-		folderSelection
-	else
-		echo Answer not acceptable, answer with "y" or "n"
-		testFolderSelection
-	fi
+	choiceSelection(yesOrNo, folderSelection, folderReading)
+
+	#if [ "${yesOrNo,,}" == "y" ]; then
+	#	folderReading	
+	#elif [ "${yesOrNo,,}" == "n" ]; then
+	#	folderSelection
+	#else
+	#	echo Answer not acceptable, answer with "y" or "n"
+	#	testFolderSelection
+	#fi
 
 }
 
