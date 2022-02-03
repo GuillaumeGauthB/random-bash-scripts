@@ -9,8 +9,11 @@ choiceSelection (answer, oriFunc, nxtFunc) {
 	elif [ "${answer,,}" == "n" ]; then
 		$oriFunc;
 	else
+		echo;
+		echo;
 		echo Answer not acceptable, answer with "y" or "n"
 		$oriFunc
+	fi
 }
 
 user="/home/$(whoami)/"
@@ -96,9 +99,32 @@ deleteSelection () {
 
 delete () {
 	read -p "y/n: " answerDelete
-	if [ "${answerDelete,,}" == "y" ]; then
-		echo Put in the trash directory or permanently delete?
-		read -p "Trash/Permanent : " deleteType
+	choiceSelection("$answerDelete", "delete()", "trashDelete");
+	# if [ "${answerDelete,,}" == "y" ]; then
+	# 	echo Put in the trash directory or permanently delete?
+	# 	read -p "Trash/Permanent : " deleteType
+	# 	if [ "${deleteType,,}" == "Trash" ]; then
+	# 		echo Transfering all file selected to the trash directory
+	# 		rsync -rv $toDelete ~/.local/share/Trash/files
+	# 		rm -rfv $toDelete
+	# 		echo; echo
+	# 		echo Succesfully moved all files to the Trash folder
+	# 	elif [ "${deleteType,,}" == "Permanent" ]; then
+	# 		echo Permanently deleting all selected files
+	# 		rm -rvf $toDelete
+	# 		echo; echo
+	# 		echo Succesfully deleted all files
+	# 	fi
+	# elif [ "${answerDelete,,}" == "n" ]; then
+	# 	deleteSelection
+	# else
+	# 	echo Answer not acceptable, answer with "y" or "n"
+	# 	delete
+	# fi
+}
+
+trashDelete () {
+	read -p "Trash/Permanent : " deleteType
 		if [ "${deleteType,,}" == "Trash" ]; then
 			echo Transfering all file selected to the trash directory
 			rsync -rv $toDelete ~/.local/share/Trash/files
@@ -111,11 +137,5 @@ delete () {
 			echo; echo
 			echo Succesfully deleted all files
 		fi
-	elif [ "${answerDelete,,}" == "n" ]; then
-		deleteSelection
-	else
-		echo Answer not acceptable, answer with "y" or "n"
-		delete
-	fi
 }
 folderSelection
