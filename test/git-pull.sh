@@ -4,7 +4,7 @@
 # might have to modify the .xinitrc file at ~
 
 # Input folder
-cd "$HOME/git/to-pull"
+cd "$HOME/git"
 ls
 for f in *; do
     cd $f
