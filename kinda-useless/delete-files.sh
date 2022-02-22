@@ -1,4 +1,4 @@
-#!bin/bash
+#!/bin/bash
 #
 #		Script that allows you to delete files and folders through it, kinda useless but was a test anyway
 #
@@ -23,7 +23,7 @@ folderSelection () {
 	read -p "$user" locationChoice
 
 	locationDelete="$user$locationChoice"
-	
+
 	testFolderSelection
 }
 
@@ -37,7 +37,7 @@ testFolderSelection () {
 	choiceSelection(yesOrNo, folderSelection, folderReading)
 
 	#if [ "${yesOrNo,,}" == "y" ]; then
-	#	folderReading	
+	#	folderReading
 	#elif [ "${yesOrNo,,}" == "n" ]; then
 	#	folderSelection
 	#else
@@ -64,13 +64,13 @@ folderReading () {
 	cd $locationDelete && $listChoice
 
 	echo Which files do you want to delete?
-	
+
 	deleteSelection
 }
 
 deleteSelection () {
 	read -p "File/folder to delete: " wantToDelete
-	
+
 	if [ "$wantToDelete" == "*" ]; then
 		toDelete="$wantToDelete"
 		echo "Are you sure you want to delete all files of said type in $locationDelete?"
