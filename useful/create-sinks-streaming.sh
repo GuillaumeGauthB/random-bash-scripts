@@ -7,7 +7,7 @@
 
 
 # check if pulse is on the computer
-location="$(ls /opt/bin | grep pulseaudio)"
+location="$(ls /usr/bin | grep pulseaudio)"
 if [[ "${location,,}" == *"pulseaudio"* ]]; then
     ls
     pactl list sinks short
