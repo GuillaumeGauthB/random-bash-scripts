@@ -4,6 +4,8 @@ echo
 read -p "Select path to picture: " Path;
 echo
 ls ~/Pictures/$Path
+testForNow=$($HOME/Pictures/$Path/*)
+echo $testForNow
 echo
 read -p "Which picture do you wanna select: " PicSelection;
 if [[ "${PicSelection,,}" == "$(ls ~/Pictures/$Path | grep $PicSelection)" ]]; then
