@@ -66,6 +66,7 @@ if [[ $1 == "" || $2 == "" || $3 == "" ]]; then
     else
         echo "Exitting"
     fi
+else
+    git add --all && git commit -m "$0" && git push $1 $2
 fi
-# git add --all && git commit -m "$0" && git push $1 $2
 
