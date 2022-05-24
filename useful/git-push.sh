@@ -29,6 +29,7 @@ addFile () {
 }
 
 pushFile () {
+    git remote
     echo "Select remote, or enter no to enter a custom url"
     read userRemote
     if [[ "${userRemote,,}" == "no" ]]; then
