@@ -1,6 +1,7 @@
 #!/bin/bash
 # Script to automatically push
 
+# Function to add files to commit
 addFile () {
     tree $(git rev-parse --show-toplevel)
         echo ""
@@ -28,6 +29,7 @@ addFile () {
         pushFile
 }
 
+# Function to set where to push
 pushFile () {
     git remote
     echo "Select remote, or enter no to enter a custom url"
@@ -44,6 +46,7 @@ pushFile () {
     
 }
 
+# Function to set the branch to push to
 pushFileBranch () {
     read -p "Branch to push on: " userBranch
     if [[ userBranch != "" ]]; then
