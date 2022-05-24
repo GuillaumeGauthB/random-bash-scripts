@@ -11,12 +11,16 @@ addFile () {
         echo "PS: for now only works with a single added element"
         read toAdd
         if [[ "$toAdd" != "" || "$(tree $(git rev-parse --show-toplevel) | grep $toAdd )" != "" ]]; then
-            echo "$(find ~+ -name $toAdd)"
-            git add $(find ~+ -name $toAdd)
+            IFS=' ' read -r -a toAddArray <<< "$toAdd"
+            for item in toAddArray; do
+                echo "$(find ~+ -name $toAdd)"
+                # git add $(find ~+ -name $toAdd)
+            done
             # Problem: only works if there is one file or folder
             # Might have to use awk in order to check the amount of parameters
             # Then sed to cut the string up by spaces, put it in an array, and run the command for everything
             # with a for or foreach or smth
+            
         elif [[ "$toAdd" == "." ]]; then
             git add .
         else
