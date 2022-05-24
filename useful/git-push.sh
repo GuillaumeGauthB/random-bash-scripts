@@ -35,11 +35,12 @@ pushFile () {
     if [[ "${userRemote,,}" == "no" ]]; then
         read -p "URL: " urlRemote
         userRemote=urlRemote
-    elif [[ "$(git remote | grep $userRemote)" == "" && "${userRemote,,}" != "no" ]]; then
+    elif [[ "$(git remote | grep $userRemote)" != "$userRemote" && "${userRemote,,}" != "no" ]]; then
         echo "Remote does not exist"
-        pushFileBranch
+        pushFile
         return 1
     fi
+    pushFileBranch
     
 }
 
