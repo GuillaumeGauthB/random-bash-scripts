@@ -5,7 +5,6 @@
 
 # Function to add files to commit
 addFile () {
-    # tree $(git rev-parse --show-toplevel)
     echo "Modified files:"
     echo ""
     git ls-files -m
@@ -14,19 +13,10 @@ addFile () {
     echo ""
     git ls-files --others --exclude-standard
     echo "__________________"
-    echo ""
-    echo "__________________"
-    echo ""
     echo "What do you want to add?"
     echo "PS: for now only works with a single added element"
     read toAdd
-    if [[ "$(tree)" == *"not found"* ]]; then
-        echo "Tree command not found"
-        # list all directories in folder
-        # for every directory, execute a command that checks for other directories and executes a function on all of them, that will
-        # reexecute the function 
-        # 
-    elif [[ "$toAdd" != "" || "$(git ls-files -m | grep $toAdd )" != "" || "$()git ls-files --others --exclude-standard | grep $toAdd" != "" ]]; then
+    if [[ "$toAdd" != "" || "$(git ls-files -m | grep $toAdd )" != "" || "$()git ls-files --others --exclude-standard | grep $toAdd" != "" ]]; then
         IFS=' ' read -r -a toAddArray <<< "$toAdd"
         for item in "${toAddArray[@]}"; do
             echo "$item"
